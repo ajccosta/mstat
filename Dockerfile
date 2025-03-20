@@ -9,6 +9,11 @@ RUN make \
  && make install PREFIX=/usr/local
 
 
-FROM alpine:3
+FROM ubuntu:latest
 
 COPY --from=builder /usr/local/bin/mstat /usr/local/bin/
+
+RUN apt-get update && \
+    apt-get install -y \
+	    vim git \
+	    make gcc automake cmake libjemalloc-dev g++
